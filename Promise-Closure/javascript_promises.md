@@ -13,7 +13,7 @@ The eventual state of a pending promise can either be fulfilled with a value or 
 
 A promise is said to be settled if it is either fulfilled or rejected, but not pending.
 
-![alt text](promises.png)
+![alt text](./assests/images/promises.png)
 
 Promise itself has no first-class protocol for cancellation, but you may be able to directly cancel the underlying asynchronous operation, typically using AbortController.
 
