@@ -9,7 +9,7 @@ const joinedArray = [...nums1, ...nums2, ...myName]
 console.log(joinedArray)
 
 const user = {
-    name : 'Sumit',
+    name: 'Sumit',
     age: 20
 }
 
@@ -20,45 +20,45 @@ console.log(updatedUser)
 
 // 4. Rest Parameter
 
-function add(...args){
+function add(...args) {
     console.log(arguments)
     console.log(Array.from(arguments))
     console.log([...arguments])
     console.log(args)
-    const sum = args.reduce((acc, curr) => acc+=curr
-    , 0)
+    const sum = args.reduce((acc, curr) => acc += curr
+        , 0)
     return sum;
 }
 // 5. Destructuring 
 const user1 = {
- name: 'Sumit',
- age:20,
- address: {
-    city: 'Bangalore',
-    pinCode: '560037'
- },
- getfullName : function(){
-    return user1.name + ' '+ user1.age;
- },
-//  getfullName : 'sumit'
-} 
+    name: 'Sumit',
+    age: 20,
+    address: {
+        city: 'Bangalore',
+        pinCode: '560037'
+    },
+    getfullName: function () {
+        return user1.name + ' ' + user1.age;
+    },
+    //  getfullName : 'sumit'
+}
 
-const {name, age } = user1;
+const { name, age } = user1;
 console.log(name, age)
 
 // Multilevel Destructuring
-const {address: {city}} = user1;
+const { address: { city } } = user1;
 console.log(city)
 
 const colors = ['red', 'yellow', 'green', 'pink', 'black']
-const [c1,c2] = colors;
-console.log(c1,c2)
+const [c1, c2] = colors;
+console.log(c1, c2)
 
 const { 3: c4 } = colors;
 console.log(c4)
 
 // object destructuring
-function userIntro({name, age}){
+function userIntro({ name, age }) {
     console.log(name, age)
 }
 
@@ -78,7 +78,7 @@ user1?.getfullName()
 
 // Copy objects and array
 const user2 = {
-    username : 'Sumit',
+    username: 'Sumit',
     surname: 'sahu'
 }
 
@@ -88,7 +88,7 @@ const user2 = {
 // Object.assign(user3, user2)
 
 // copying object using spread operator
-const user3 = {...user2}  // Shallow copy (copies only one level)
+const user3 = { ...user2 }  // Shallow copy (copies only one level)
 
 // Array
 const fruites = ['Mango', 'Apple', 'Graps']
@@ -105,4 +105,33 @@ const fruites = ['Mango', 'Apple', 'Graps']
 // 3. 
 const myFruites = fruites.slice() // returns new array and splice return same array
 
-const deepCopy = JSON.parse(JSON.stringify(user2))
+const deepCopy1 = JSON.parse(JSON.stringify(user2))
+
+//4. Deep Copy
+
+const copy = structuredClone(user);
+
+// copy.address.city = "Delhi";
+
+// console.log(user.address.city);
+
+// Custom Recursive Deep Copy
+function deepCopy(obj) {
+    if (obj === null || typeof obj !== 'object') {
+        return obj;
+    }
+
+    const copy = Array.isArray(obj) ? [] : {};
+
+    for (const key in obj) {
+        copy[key] = deepCopy(obj[key]);
+    }
+
+    return copy;
+}
+
+const copiedObject = deepCopy(user1)
+
+copiedObject.age = 30
+console.log(copiedObject.age)
+console.log(user1.age)
